@@ -71,7 +71,9 @@ book = xlwt.Workbook()
 sh = book.add_sheet('whois')
 
 sh.row(0).write(0,'Network range')
-sh.row(0).write(1,'Description')
+sh.row(0).write(1,'Country')
+sh.row(0).write(2,'Netname')
+sh.row(0).write(3,'Description')
 row = 1
 inetnum=''
 info = ''
@@ -120,14 +122,16 @@ for j in range(1,10):
 										if data2['str']['name'] == 'inetnum':
 											inetnum = data2['str']['value']
 										if data2['str']['name'] == 'netname':
-											info += data2['str']['name']+": "+data2['str']['value']+"\r\n"
+											netname = data2['str']['value']
 										if data2['str']['name'] == 'descr':
-											info += data2['str']['name']+": "+data2['str']['value']+"\r\n"
+											descr = data2['str']['value']
 										if data2['str']['name'] == 'country':
-											info += data2['str']['name']+": "+data2['str']['value']
+											country = data2['str']['value']
 								if inetnum != '':
 									sh.row(row).write(0,inetnum)
-									sh.row(row).write(1,info)
+									sh.row(row).write(1,country)
+									sh.row(row).write(2,netname)
+									sh.row(row).write(3,descr)
 									row = row + 1
 									netrange_only=0
 								info = ''
